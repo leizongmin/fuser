@@ -1,0 +1,30 @@
+{
+  "name": "@leizm/fuser",
+  "version": "1.0.0",
+  "description": "Find the Process That is Using a File in Linux",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leizongmin/fuser.git"
+  },
+  "keywords": [
+    "fuser"
+  ],
+  "author": "LEI Zongmin <leizongmin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leizongmin/fuser/issues"
+  },
+  "homepage": "https://github.com/leizongmin/fuser#readme",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.2"
+  }
+}
