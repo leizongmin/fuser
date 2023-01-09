@@ -1,6 +1,6 @@
 {
   "name": "@leizm/fuser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find the Process That is Using a File in Linux",
   "main": "src/index.js",
   "files": [
