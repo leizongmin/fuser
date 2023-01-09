@@ -63,6 +63,14 @@ or:
 null
 ```
 
+### Filter file path when buildMap or update
+
+```js
+await fuser.update({ filter: (path) => true });
+await fuser.buildMap({ filter: (path) => true })
+```
+
+
 ## License
 
 ```

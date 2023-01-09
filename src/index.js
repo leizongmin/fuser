@@ -29,12 +29,15 @@ async function readAllOpenFilesFromPid(pid) {
   }
 }
 
-async function buildMap() {
+async function buildMap(options = {}) {
   const map = {};
   const pids = await readAllPids();
   for (const pid of pids) {
     const files = await readAllOpenFilesFromPid(pid);
     for (const file of files) {
+      if (options.filter && !options.filter(file)) {
+        continue;
+      }
       if (!map[file]) {
         map[file] = [];
       }
@@ -46,8 +49,8 @@ async function buildMap() {
 
 let cacheMap = {};
 
-async function update() {
-  cacheMap = await buildMap();
+async function update(options = {}) {
+  cacheMap = await buildMap(options);
 }
 
 function getPath(p) {

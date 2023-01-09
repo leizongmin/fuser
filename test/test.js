@@ -39,4 +39,30 @@ describe("fuser", function () {
       expect(pids3).to.be.null;
     }
   });
+
+  it("buildMap with filter should return a map", async function () {
+    {
+      const filtered = new Set();
+      const map = await fuser.buildMap({
+        filter: (file) => {
+          filtered.add(file);
+          return true;
+        },
+      });
+      expect(map).to.be.an("object");
+      expect(Object.keys(map).length).to.be.equal(filtered.size);
+    }
+    {
+      const filtered = new Set();
+      const map = await fuser.buildMap({
+        filter: (file) => {
+          filtered.add(file);
+          return false;
+        },
+      });
+      expect(map).to.be.an("object");
+      expect(Object.keys(map).length).to.be.equal(0);
+      expect(filtered.size).to.be.greaterThan(0);
+    }
+  });
 });
