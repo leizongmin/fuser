@@ -50,7 +50,7 @@ async function update() {
   cacheMap = await buildMap();
 }
 
-async function getPath(p) {
+function getPath(p) {
   if (!/^\w+:\[\d+\]$/g.test(p)) {
     p = path.resolve(p);
   }

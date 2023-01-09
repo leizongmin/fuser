@@ -20,22 +20,22 @@ describe("fuser", function () {
     const tmpFile = path.join(tmpDir, "test.txt");
     {
       await fuser.update();
-      const pids = await fuser.getPath(tmpFile);
+      const pids = fuser.getPath(tmpFile);
       expect(pids).to.be.null;
     }
     {
       const fd = fs.openSync(tmpFile, "a+");
-      const pids = await fuser.getPath(tmpFile);
+      const pids = fuser.getPath(tmpFile);
       expect(pids).to.be.null;
 
       await fuser.update();
-      const pids2 = await fuser.getPath(tmpFile);
+      const pids2 = fuser.getPath(tmpFile);
       // console.log(await fuser.buildMap(), tmpFile, pids2);
       expect(pids2).to.be.deep.eq([process.pid]);
 
       fs.closeSync(fd);
       await fuser.update();
-      const pids3 = await fuser.getPath(tmpFile);
+      const pids3 = fuser.getPath(tmpFile);
       expect(pids3).to.be.null;
     }
   });

@@ -47,7 +47,7 @@ const fuser = require('@leizm/fuser');
 // update the cache firstly
 await fuser.update();
 
-const pids = await fuser.getPath('/dev/null');
+const pids = fuser.getPath('/dev/null');
 console.log(pids);
 ```
 
