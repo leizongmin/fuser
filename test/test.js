@@ -45,6 +45,7 @@ describe("fuser", function () {
       const filtered = new Set();
       const map = await fuser.buildMap({
         filter: (file) => {
+          expect(file).to.an('string');
           filtered.add(file);
           return true;
         },
@@ -56,6 +57,7 @@ describe("fuser", function () {
       const filtered = new Set();
       const map = await fuser.buildMap({
         filter: (file) => {
+          expect(file).to.an('string');
           filtered.add(file);
           return false;
         },

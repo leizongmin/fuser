@@ -11,19 +11,17 @@ async function readAllOpenFilesFromPid(pid) {
     const fdPath = path.join("/proc", pid.toString(), "fd");
     const fds = await fs.promises.readdir(fdPath);
     const files = await Promise.all(
-      fds
-        .map(async (fd) => {
-          try {
-            const p = path.join(fdPath, fd);
-            const link = await fs.promises.readlink(p);
-            return link;
-          } catch (e) {
-            return null;
-          }
-        })
-        .filter((p) => p !== null),
+      fds.map(async (fd) => {
+        try {
+          const p = path.join(fdPath, fd);
+          const link = await fs.promises.readlink(p);
+          return link;
+        } catch (e) {
+          return null;
+        }
+      }),
     );
-    return files;
+    return files.filter((p) => p !== null);
   } catch (e) {
     return [];
   }
