@@ -1,15 +1,95 @@
 # fuser
 Find the Process That is Using a File in Linux
 
-## Installation
+## Go version
+
+### Installation
+
+```bash
+go get github.com/leizongmin/fuser
+```
+
+#### Build open files and pid map data
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/leizongmin/fuser"
+)
+
+func main() {
+	data, err := fuser.BuildMap(nil)
+	if err != nil {
+		panic(err)
+	}
+	for k, v := range data {
+		fmt.Println(k, v)
+	}
+}
+```
+
+Outputs like this:
+
+```
+socket:[90732] [3004]
+pipe:[99713] [4117 4117]
+/home/codespace/.vscode-remote/data/logs/20230110T093419/exthost1/output_logging_20230110T093428/12-LLDB.log [3004 31348 31405 4619 4629 6359 7158]
+pipe:[732477] [31405 31405]
+...
+```
+
+#### Gets a list of Pids for which the file is currently being opened
+
+```go
+err := fuser.Update(nil)
+if err != nil {
+   panic(err)
+}
+fmt.Println(fuser.GetPath("/dev/null2"))
+```
+
+Outputs like this:
+
+```
+[1 2542 2568 2577 2590 2962 3004 31348 31405 3523 3565 4117 4251 4257 4270 4309 4619 4629 5215 5237 7 7158]
+```
+
+or:
+
+```
+[]
+```
+
+#### Filter file path when buildMap or update
+
+```go
+fuser.Update(&fuser.Options{
+   Filter: func(s string) bool {
+      return true
+   },
+})
+
+fuser.Update(&fuser.Options{
+   Filter: func(s string) bool {
+      return false
+   },
+})
+```
+
+
+## Node.js version
+### Installation
 
 ```bash
 npm i @leizm/fuser -S
 ```
 
-## Usage
+### Usage
 
-### Build open files and pid map data
+#### Build open files and pid map data
 
 ```js
 const fuser = require('@leizm/fuser');
@@ -39,7 +119,7 @@ console.log(data);
 }
 ```
 
-### Gets a list of Pids for which the file is currently being opened
+#### Gets a list of Pids for which the file is currently being opened
 
 ```js
 const fuser = require('@leizm/fuser');
@@ -63,7 +143,7 @@ or:
 null
 ```
 
-### Filter file path when buildMap or update
+#### Filter file path when buildMap or update
 
 ```js
 await fuser.update({ filter: (path) => true });
