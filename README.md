@@ -1,5 +1,7 @@
 [![Go](https://github.com/leizongmin/fuser/actions/workflows/go.yml/badge.svg)](https://github.com/leizongmin/fuser/actions/workflows/go.yml)
 [![Node.js CI](https://github.com/leizongmin/fuser/actions/workflows/node.js.yml/badge.svg)](https://github.com/leizongmin/fuser/actions/workflows/node.js.yml)
+![NPM](https://img.shields.io/npm/l/@leizm/fuser)
+![npm (scoped)](https://img.shields.io/npm/v/@leizm/fuser)
 
 # fuser
 
