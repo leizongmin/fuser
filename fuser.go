@@ -44,10 +44,13 @@ func readAllOpenFilesFromPid(pid int) []string {
 	return files
 }
 
+// Options is a struct that contains options for BuildMap.
 type Options struct {
+	// Filter is a function that returns true if the file should be included in the map.
 	Filter func(string) bool
 }
 
+// BuildMap returns a map of open files to the pids that have them open.
 func BuildMap(options *Options) (map[string][]int, error) {
 	if options == nil {
 		options = &Options{}
@@ -75,6 +78,7 @@ func BuildMap(options *Options) (map[string][]int, error) {
 
 var cacheMap map[string][]int
 
+// Update updates the cache map.
 func Update(options *Options) error {
 	ret, err := BuildMap(options)
 	if err != nil {
@@ -86,6 +90,7 @@ func Update(options *Options) error {
 
 var notAPathRe = regexp.MustCompile(`/^\w+:\[\d+\]$`)
 
+// GetPath returns the pids that have the given path open.
 func GetPath(p string) []int {
 	if cacheMap == nil {
 		return nil
