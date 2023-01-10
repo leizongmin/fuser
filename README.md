@@ -1,4 +1,8 @@
+[![Go](https://github.com/leizongmin/fuser/actions/workflows/go.yml/badge.svg)](https://github.com/leizongmin/fuser/actions/workflows/go.yml)
+[![Node.js CI](https://github.com/leizongmin/fuser/actions/workflows/node.js.yml/badge.svg)](https://github.com/leizongmin/fuser/actions/workflows/node.js.yml)
+
 # fuser
+
 Find the Process That is Using a File in Linux
 
 ## Go version
@@ -79,8 +83,8 @@ fuser.Update(&fuser.Options{
 })
 ```
 
-
 ## Node.js version
+
 ### Installation
 
 ```bash
@@ -92,42 +96,42 @@ npm i @leizm/fuser -S
 #### Build open files and pid map data
 
 ```js
-const fuser = require('@leizm/fuser');
+const fuser = require("@leizm/fuser");
 
 const data = await fuser.buildMap();
 console.log(data);
 ```
 
- Outputs like this:
+Outputs like this:
 
- ```
- {
-  '/dev/null': [
-        1, 11547,  1163,  1163,
-     1181, 11856, 12283, 12290,
-    12298, 12431, 13220, 13245,
-    21131, 22466, 22525, 23318,
-    31545, 31546, 31563,  3196,
-     3222,  6370,     7
-  ],
-  'pipe:[104532]': [ 1, 7 ],
-  'pipe:[104533]': [ 1, 7 ],
-  'pipe:[334229]': [ 10976 ],
-  'pipe:[334230]': [ 10976 ],
-  'pipe:[334231]': [ 10976 ],
-  ...
+```
+{
+ '/dev/null': [
+       1, 11547,  1163,  1163,
+    1181, 11856, 12283, 12290,
+   12298, 12431, 13220, 13245,
+   21131, 22466, 22525, 23318,
+   31545, 31546, 31563,  3196,
+    3222,  6370,     7
+ ],
+ 'pipe:[104532]': [ 1, 7 ],
+ 'pipe:[104533]': [ 1, 7 ],
+ 'pipe:[334229]': [ 10976 ],
+ 'pipe:[334230]': [ 10976 ],
+ 'pipe:[334231]': [ 10976 ],
+ ...
 }
 ```
 
 #### Gets a list of Pids for which the file is currently being opened
 
 ```js
-const fuser = require('@leizm/fuser');
+const fuser = require("@leizm/fuser");
 
 // update the cache firstly
 await fuser.update();
 
-const pids = fuser.getPath('/dev/null');
+const pids = fuser.getPath("/dev/null");
 console.log(pids);
 ```
 
@@ -147,9 +151,8 @@ null
 
 ```js
 await fuser.update({ filter: (path) => true });
-await fuser.buildMap({ filter: (path) => true })
+await fuser.buildMap({ filter: (path) => true });
 ```
-
 
 ## License
 
